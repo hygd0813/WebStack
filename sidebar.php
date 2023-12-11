@@ -52,7 +52,7 @@
                 <ul class="zmki_wap" style="position: sticky; bottom: 0; display: flex; justify-content: space-between; padding: 0;">  
                     <li style="margin:10px 8px 20px 45px;font-size:18px;"><a href="<?php $this->options->adminUrl(); ?>" target="_blank"><i class="fa fa-cog" aria-hidden="true" /></i></a></li>  
                     <li style="margin:10px 8px 20px 8px;font-size:18px;"><a href="<?php $this->options->siteUrl();?>sitemap.xml" target="_blank"><i class="fa fa-sitemap" aria-hidden="true" /></i></a></li>
-                    <li style="margin:10px 8px 20px 8px;font-size:18px;"><a href="" target="_blank" rel="nofollow"><i class="fa fa-github" aria-hidden="true" /></i></a></li> 
+                    <li style="margin:10px 8px 20px 8px;font-size:18px;"><a href="https://github.com/hygd0813/WebStack" target="_blank" rel="nofollow"><i class="fa fa-github" aria-hidden="true" /></i></a></li> 
                     <li style="margin:10px 8px 20px 8px;font-size:18px;"><a onclick="window.open('https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=<?php $this->options->fk_zmki_email(); ?>')"><i class="fa fa-envelope" aria-hidden="true" /></i></a></li>
                     <li style="margin:10px 45px 20px 8px;font-size:18px;"><a href="<?php $this->options->bdtongji();?>" target="_blank" rel="nofollow"><i class="fa fa-bar-chart" aria-hidden="true" /></i></a></li> 
                 </ul>
