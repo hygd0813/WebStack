@@ -1,0 +1,26 @@
+ /* 站点聚合文章 */
+.post-single-list ul li {
+  line-height: 36px;
+  height: 46px;
+  padding:5px 0;
+  border-bottom:1px #ddd dotted;  
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  transition:all .3s ease-out;
+}
+
+.post-single-list ul li::before {
+  display: none;
+  content: "#";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #417863;
+  position: absolute;
+  margin-top: 12px;
+}
+
+.post-single-list ul li i{display:inline-block;width:16px;height:16px;line-height:16px;margin:0 6px 0 0;text-align:center;color:#fff;font-size:12px;font-family:Arial, sans-serif;text-indent:0;background:#bbb;border-radius:2px;}
+.post-single-list ul li:nth-child(-n+4) i{font-weight:bold;background:#F9B13B;}
+.post-single-list ul li:hover{text-indent:8px;}
