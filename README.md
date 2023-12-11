@@ -4,13 +4,16 @@ Typecho Webstack导航主题 | 魔改 By [荒野孤灯](https://www.80srz.com)
 Typecho Webstack导航主题我一直在用，首先感谢作者的无私分享。上周末休息在家，有点时间，终于又双叒叕对它下手了，修复了一些BUG(PS：忘了用的哪版，下载时间很久了)，删了一些代码，增加一些功能。
 
 <!--more-->
-https://www.80srz.com
+
 ### 主题模板信息
 
-**主题名称：**Typecho Webstack导航主题
-**原主题文档：**https://www.zuanmang.net/5366.html
-**原主题演示：**https://tool.zuanmang.net/
-**我的魔改主题演示：**https://www.80srz.com/link/
+主题名称：Typecho Webstack导航主题
+
+原主题文档：https://www.zuanmang.net/5366.html
+
+原主题演示：https://tool.zuanmang.net
+
+我的魔改主题演示：https://www.80srz.com/link/
 
 ### 魔改主题预览
 
@@ -55,6 +58,8 @@ https://www.80srz.com
 ### 魔改主题下载
 
 Github：https://github.com/hygd0813/WebStack
+
+百度网盘：https://pan.baidu.com/s/1ppStxhp5-85IZUfxIv0NLw?pwd=q8gr
 
 ### 尚存问题
 
