@@ -339,3 +339,14 @@ red{
 .post-single-list ul li i{display:inline-block;width:16px;height:16px;line-height:16px;margin:0 6px 0 0;text-align:center;color:#fff;font-size:12px;font-family:Arial, sans-serif;text-indent:0;background:#bbb;border-radius:2px;}
 .post-single-list ul li:nth-child(-n+4) i{font-weight:bold;background:#F9B13B;}
 .post-single-list ul li:hover{text-indent:8px;}
+
+.zmki_sety {
+  display: none;
+    }
+    .zmki_set {
+      position: sticky;
+      bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 35px;
+    }
