@@ -59,12 +59,11 @@ $this->need('header.php');
 	</div> 
   <?php endwhile; ?>
 </div>    
-
 <?php else: ?>
 <?php endif; ?>
 <?php endwhile; ?>
-</div>
-<?php $this->need('footer.php'); ?>  
+<?php $this->need('footer.php'); ?> 
+</div> 
 
 <style>
 	.fk_service_qrimg_site {

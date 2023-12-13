@@ -98,7 +98,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                                  <!--Pc-->
                                 <a class="wapnone" rel="nofollow" href="http://seo.chinaz.com/<?php echo $http_referer; ?>" target="_blank"><i class="fa fa-bar-chart"></i>站长工具</a>  
                             </p>
-                            <p style="display:inline;">站点评分：<div class="p_star product-star<?php getLikeStatus($this->cid); ?>"></div><a id="toggleIcon" style="margin-left:120px;" title="点击查看网址评级算法详情。"><i class="fa fa-question-circle-o" aria-hidden="true"/></i> = <?php getLikeStatus($this->cid); ?> / 10</a></p>
+                            <p style="display:inline;">站点评分：<div class="p_star product-star<?php getLikeStatus($this->cid); ?>"></div><a id="toggleIcon" style="margin-left:110px;font-size:10px;font-color:#f2f2f8;" title="点击查看网址评级算法详情。"><i class="fa fa-question-circle-o" aria-hidden="true"/></i> = <?php getLikeStatus($this->cid); ?> / 10</a></p>
                         </div> 
                         <div id="floatingDiv" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999;">  
                              <h3>网址评级算法</h3>
@@ -258,7 +258,7 @@ $('#disagree-btn').on('click', function () {
                                 preg_match('/<meta name="description" content="(.*?)"/', $html, $matches);  
                                 $description = $matches[1];  
                                 preg_match_all('/<meta name="keywords" content="(.*?)"/', $html, $matches);  
-                                $keywords = $matches[1][0]; // 提取第一个关键词  
+                                $keywords = $matches[1][0]; // 提取所有关键词 $keywords = $matches[1][0]; 提取第一个关键词
                                 $webthemeurl = $this->options->themeUrl;
                                 $webimgurl = $this->fields->url;
                                 // 输出TDK信息  
@@ -298,63 +298,67 @@ if ($this->content) {
             <div class="items">
                 <div class="art-main-content">
 <?php  
-// 订阅源URL  
-$rssUrl = $this->fields->rssurl;  
-  
-// 创建SimpleXML对象并加载订阅源  
-$xml = simplexml_load_file($rssUrl);  
-  
-// 判断是RSS还是Atom  
-$isRss = isset($xml->channel);  
-$isAtom = isset($xml->{'feed'}) && isset($xml->{'feed'}->{'xmlns'}) && $xml->{'feed'}->{'xmlns'} == 'http://www.w3.org/2005/Atom';  
-  
-if (!$isRss && !$isAtom) {  
-    // 无法识别feed格式  
-    echo ('Unsupported feed format');  
-}  
-  
-// 获取最新10篇文章列表  
-$latestArticles = array();  
-$count = 0;  
-  
-if ($isRss) {  
-    foreach ($xml->channel->item as $article) {  
-        $title = (string)$article->title;  
-        $link = (string)$article->link;  
-        $pubDate = (string)$article->pubDate;  
-        $latestArticles[] = array('title' => $title, 'link' => $link, 'pubDate' => $pubDate);  
-        $count++;  
-        if ($count >= 10) {  
-            break;  
+// 订阅源URL 
+$rssUrl = $this->fields->rssurl;
+//解析本地xml文件
+$xml = simplexml_load_file($rssUrl);
+
+			if ($xml) { //如果是 xml 则输出
+
+				$xml->registerXPathNamespace('atom','http://www.w3.org/2005/Atom');
+
+				if (!empty($xml->channel->item)) { //如果有 item 节点，则解析 Rss
+				// 获取最新10篇文章列表  
+                $latestArticles = array();  
+                $count = 0; 
+              foreach ($xml->channel->item as $article) {  
+                $title = (string)$article->title;  
+                $link = (string)$article->link;  
+                $pubDate = (string)$article->pubDate;  
+                $latestArticles[] = array('title' => $title, 'link' => $link, 'pubDate' => $pubDate);  
+                $count++;  
+                if ($count >= 10) {  
+                    break;  
+                }  
+            } 
+
+				} else if (!empty($xml->xpath('//atom:entry'))) { //如果有 entry 节点，则解析 Atom
+            // 获取最新10篇文章列表  
+            $latestArticles = array();  
+            $count = 0; 
+        //foreach ($xml->{'feed'}->{'entry'} as $article) {  
+        foreach($xml->entry as $article) {  
+            $title = (string)$article->{'title'};  
+            $link = (string)$article->{'link'}['href'];  
+            $pubDate = (string)$article->{'published'};  
+            $latestArticles[] = array('title' => $title, 'link' => $link, 'pubDate' => $pubDate);  
+            $count++;  
+            if ($count >= 10) {  
+                break;  
+            }  
         }  
+				}
+
+			} else { //如果非 xml 则输出
+
+				echo '
+							<div class="Lopwon_xml-oops">未能与 <span>'.$rssUrl.'</span> 握手，请检查链接是否有效或订阅源内容格式是否符合标准！</div>
+				';
+			}
+
+        // 输出最新10篇文章列表  
+        echo '<div class="row post-single post-single-list"><ul>';  
+        $rank = 1;  
+        foreach ($latestArticles as $article) {  
+        // 假设原始的日期保存在名为 'pubDate' 的键中  
+        $originalDate = $article['pubDate'];  
+        // 使用 date 函数来格式化日期  
+        $formattedDate = date('Y-m-d', strtotime($originalDate));  
+        echo '<li class="col-xs-12 col-sm-12 col-md-6">';  
+        echo '<i>'.$rank.'</i><span style="width:400px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; "><a href="' . $article['link'] . '" target="_blank" rel="nofollow">' . $article['title'] . '</a></span><span style="float:right;font-size:12px;margin:10px 0px 0 0;width:105px;"><a class="fa fa-clock-o"></a>&nbsp;'.$formattedDate.'</span></li>';  
+        $rank++;  
     }  
-} else if ($isAtom) {  
-    foreach ($xml->{'feed'}->{'entry'} as $article) {  
-        $title = (string)$article->{'title'};  
-        $link = (string)$article->{'link'}['href'];  
-        $pubDate = (string)$article->{'published'};  
-        $latestArticles[] = array('title' => $title, 'link' => $link, 'pubDate' => $pubDate);  
-        $count++;  
-        if ($count >= 10) {  
-            break;  
-        }  
-    }  
-}  
-  
-// 输出最新10篇文章列表  
-echo '<div class="row post-single post-single-list"><ul>';  
-$rank = 1;  
-foreach ($latestArticles as $article) {  
-    // 假设原始的日期保存在名为 'pubDate' 的键中  
-    $originalDate = $article['pubDate'];  
-    // 使用 date 函数来格式化日期         
-    $formattedDate = date('Y-m-d', strtotime($originalDate));        
-    echo '<li class="col-xs-12 col-sm-12 col-md-6">';      
-    echo '<i>'.$rank.'</i><span style="width:400px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; "><a href="' . $article['link'] . '" target="_blank" rel="nofollow">' . $article['title'] . '</a></span><span style="float:right;font-size:12px;margin:10px 0px 0 0;width:105px;"><a class="fa fa-clock-o"></a>&nbsp;' . $formattedDate . '</span>';       
-    echo '</li>';   
-    $rank++;     
-}      
-echo '</ul></div>';   
+    echo '</ul></div>'; 
 ?>
 
              </div>  

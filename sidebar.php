@@ -6,6 +6,9 @@
                         <a href="<?php $this->options->siteUrl(); ?>" class="logo-expanded">
                             <img class="logo_size" src="<?php $this->options->Biglogo(); ?>" width="100%" alt="<?php $this->options->IndexName(); ?>" />
                         </a>
+                        <a href="<?php $this->options->siteUrl(); ?>" class="logo-collapsed">
+                            <img src="<?php $this->options->themeUrl('images/logo-collapsed@2x.png'); ?>" width="18px" alt="">
+                        </a>
                     </div>
                     <div class="mobile-menu-toggle visible-xs">
                         <a href="#" data-toggle="mobile-menu">
@@ -45,27 +48,37 @@
         <?php } ?>  
     <?php endif; ?>  
 <?php endwhile; ?>
-<li><br></li><li><br></li>
-                                <?php $this->widget('Widget_Contents_Page_List')->parse('<li><a href="{permalink}"> <i class="linecons-heart"></i><span class="smooth">{title}</span> <span class="label label-Primary pull-right hidden-collapsed">♥</span></a></li>'); ?>                    
+<li><br></li>
+                            <?php $this->widget('Widget_Contents_Page_List')->parse('<li><a href="{permalink}"> <i class="linecons-heart"></i><span class="smooth">{title}</span> <span class="label label-Primary pull-right hidden-collapsed">♥</span></a></li>'); ?> 
+                            <div class="zmki_wap" style="position: sticky; bottom: 10px; display: flex; justify-content: space-between; padding:0px;">
+                                <a href="<?php $this->options->adminUrl(); ?>" target="_blank" title="登陆后台"><i class="fa fa-cog" aria-hidden="true" /></i></a>
+                                <a href="<?php $this->options->siteUrl();?>sitemap.xml" target="_blank" title="网站地图"><i class="fa fa-sitemap" aria-hidden="true" /></i></a>
+                                <a href="https://github.com/hygd0813/WebStack" target="_blank" rel="nofollow" title="Github"><i class="fa fa-github" aria-hidden="true" /></i></a>
+                                <a href="mailto:?subject=<?php $this->title() ?>&body=Check out this article: <?php $this->permalink() ?>" title="QQ邮箱"><i class="fa fa-envelope" aria-hidden="true" /></i></a>
+                                <a href="<?php $this->options->bdtongji();?>" target="_blank" rel="nofollow" title="网站统计"><i class="fa fa-bar-chart" aria-hidden="true" /></i></a>
+                            </div>                 
                 </ul>
-                <div class="clear"></div>
-                <ul class="zmki_wap" style="position: sticky; bottom: 0; display: flex; justify-content: space-between; padding: 0;">  
-                    <li style="margin:10px 8px 20px 45px;font-size:18px;"><a href="<?php $this->options->adminUrl(); ?>" target="_blank"><i class="fa fa-cog" aria-hidden="true" /></i></a></li>  
-                    <li style="margin:10px 8px 20px 8px;font-size:18px;"><a href="<?php $this->options->siteUrl();?>sitemap.xml" target="_blank"><i class="fa fa-sitemap" aria-hidden="true" /></i></a></li>
-                    <li style="margin:10px 8px 20px 8px;font-size:18px;"><a href="https://github.com/hygd0813/WebStack" target="_blank" rel="nofollow"><i class="fa fa-github" aria-hidden="true" /></i></a></li> 
-                    <li style="margin:10px 8px 20px 8px;font-size:18px;"><a onclick="window.open('https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=<?php $this->options->fk_zmki_email(); ?>')"><i class="fa fa-envelope" aria-hidden="true" /></i></a></li>
-                    <li style="margin:10px 45px 20px 8px;font-size:18px;"><a href="<?php $this->options->bdtongji();?>" target="_blank" rel="nofollow"><i class="fa fa-bar-chart" aria-hidden="true" /></i></a></li> 
-                </ul>
-                <div class="clear"></div>          
+                
+                <!-- ul class="zmki_wap zmki_set zmki_sety" style="position: relative; bottom: 0; display: flex; justify-content: space-between; padding: 0;">  
+                    <li style="margin:10px 8px 20px 45px;font-size:16px;"><a href="<?php $this->options->adminUrl(); ?>" target="_blank"><i class="fa fa-cog" aria-hidden="true" /></i></a></li>  
+                    <li style="margin:10px 8px 20px 8px;font-size:16px;"><a href="<?php $this->options->siteUrl();?>sitemap.xml" target="_blank"><i class="fa fa-sitemap" aria-hidden="true" /></i></a></li>
+                    <li style="margin:10px 8px 20px 8px;font-size:16px;"><a href="https://github.com/hygd0813/WebStack" target="_blank" rel="nofollow"><i class="fa fa-github" aria-hidden="true" /></i></a></li> 
+                    <li style="margin:10px 8px 20px 8px;font-size:16px;"><a href="mailto:?subject=<?php $this->title() ?>&body=Check out this article: <?php $this->permalink() ?>"><i class="fa fa-envelope" aria-hidden="true" /></i></a></li>
+                    <li style="margin:10px 45px 20px 8px;font-size:16px;"><a href="<?php $this->options->bdtongji();?>" target="_blank" rel="nofollow"><i class="fa fa-bar-chart" aria-hidden="true" /></i></a></li> 
+                </ -->
+                         
             </div>
         </div>
         
         <!--顶部美化开始-->  
    <div class="board">
           <div class="left">
-       <ul class="user-info-menu left-links list-inline list-unstyled">	 
-     <li><span class="board-title zmki_wap_zsy1"><a href="<?php $this->options->siteUrl(); ?>" ><i class="fa fa-home  "></i> 首页</a></span></li>
-	 <li><span class="board-title"><a href="<?php $this->options->zmki_links(); ?>"><i class="fa fa-plus-square  " ></i> 收录提交</a></span></li>
+       <ul class="user-info-menu left-links list-inline list-unstyled">
+            <li class="hidden-sm hidden-xs header_min_bar">
+                <a href="#" data-toggle="sidebar"><i class="fa-bars" style="font-size:16px;"></i></a>
+            </li>
+     <li><span class="board-title zmki_wap_zsy1"><a href="<?php $this->options->siteUrl(); ?>" ><i class="fa fa-home  "></i>&nbsp;首页</a></span></li>
+	 <li><span class="board-title"><a href="<?php $this->options->zmki_links(); ?>"><i class="fa fa-plus-square  " ></i>&nbsp;收录提交</a></span></li>
  	 <?php if ($this->options->zmki_myurl): ?>        
 	 <li><span class="board-title "><a href="<?php $this->options->zmki_myurl(); ?>" target="_blank"><i class="fa fa-heart xiaotubiao  " style="color: #fb5962;"></i>&nbsp;<?php $this->options->zmki_myname(); ?></a></span></li>
  	 <?php endif; ?>        
@@ -73,10 +86,24 @@
 	 <li class="zmki_tianqi zmki_wap"><span class="zmki_wap" id="he-plugin-simple"></span></li>
      <?php endif; ?>
 	 <?php if ($this->options->zmki_ah == '1'): ?>  
-	 <li><div class="zmki_yldh zmki_wap_zsy2"  title="切换模式"><a href="javascript:switchNightMode()"  target="_self"><i class="fa fa-moon-o" aria-hidden="true" style="color:#ffb948;"></i></a></div></li> 
+	 <li><div class="zmki_yldh zmki_wap_zsy2"  title="切换模式"><a href="javascript:switchNightMode()"  target="_self"><i class="fa fa-moon-o" aria-hidden="true" style="color:#ffb948;font-size:24px;"></i></a></div></li> 
 	 <?php endif; ?>     
 		  </ul>
        </div>
+
+<script>
+// 获取要操作的元素  
+const headerMinBar = document.querySelector('.header_min_bar');  
+const zmkiSet = document.querySelector('.zmki_sety');  
+  
+// 添加点击事件监听器  
+headerMinBar.addEventListener('click', function() {  
+  // 切换显示状态  
+  zmkiSet.style.display = zmkiSet.style.display === 'none' ? 'block' : 'none';  
+});
+</script>
+
+
        <div class="right">
             <?php if ($this->user->hasLogin()) :?>
             <li>

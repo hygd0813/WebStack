@@ -78,8 +78,8 @@
 $(document).pjax(
   'a[href^="<?php Helper::options()->siteUrl()?>"]:not(a[target="_blank"],a[no-pjax]), a[href^="?"]',
   {
-    container: '.sidebar-menu .board .main-footer',
-    fragment: '.sidebar-menu .board .main-footer',
+    container: '.board .main-footer',
+    fragment: '.board .main-footer',
     timeout: 8000,
   };
 )
